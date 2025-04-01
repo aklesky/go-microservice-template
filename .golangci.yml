@@ -1,0 +1,25 @@
+run:
+  timeout: 2m
+
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - gosimple
+    - unused
+    - deadcode
+    - gocritic
+
+issues:
+  exclude-use-default: false
+
+linters-settings:
+  gocritic:
+    enabled-checks:
+      - ifElseChain
+      - unnecessaryBlock
+      - rangeValCopy
+
+output:
+  format: colored-line-number

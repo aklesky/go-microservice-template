@@ -1,0 +1,31 @@
+{
+    "name": "Go Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/go:1",
+    "features": {
+        "ghcr.io/devcontainers/features/go:1": {
+            "version": "1.24.1"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "go.toolsManagement.autoUpdate": true,
+                "go.useLanguageServer": true,
+                "editor.formatOnSave": true,
+                "go.lintTool": "golangci-lint",
+                "go.lintOnSave": "file",
+                "go.lintFlags": [
+                  "--config=.golangci.yml"
+                ]
+            },
+            "extensions": [
+                "golang.go",
+                "ms-vscode.go",
+                "ms-vscode.dev-containers",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+    "postCreateCommand": "go mod tidy && \\ go install golang.org/x/tools/gopls@latest && \\ go install github.com/go-delve/delve/cmd/dlv@latest && \\ go install github.com/air-verse/air@latest && \\ go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
+    "remoteUser": "vscode"
+}
