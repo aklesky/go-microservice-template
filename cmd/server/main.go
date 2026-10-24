@@ -11,7 +11,9 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		slog.Info("Received request", "method", r.Method, "url", r.URL.Path)
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Hello, world"))
+		if _, err := w.Write([]byte("Hello, world")); err != nil {
+			slog.Error("Write response failed", "error", err)
+		}
 	})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
